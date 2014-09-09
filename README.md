@@ -10,12 +10,16 @@ The basic configuration is using a Raspberry Pi with the GPIO pins controlling t
 Additional information on the wiring and construction can be found in the schematics/ folder.
 
 Tools necessary to build a controllable Big Mouth Billy Bass (more detail needed):
-1x Big Mouth Billy Bass (multiple can be controlled with this library)
-1x Raspberry Pi (Model B or B+ preferred, but not required)
-Single Core Wire (22 gauge or smaller is recommended)
-Soldering Iron
-Solder
-3x ~217 milli-ohm resistors (one for each motor)
+<ul>
+<li>1x Big Mouth Billy Bass (multiple can be controlled with this library)</li>
+<li>1x Raspberry Pi (Model B or B+ preferred, but not required)</li>
+<li>Single Core Wire (22 gauge or smaller is recommended)</li>
+<li>Soldering Iron</li>
+<li>Solder</li>
+<li>3x ~217 milli-ohm resistors (one for each motor)</li>
+</ul>
 
 Optional:
-GPIO breakout board for connecting the Raspberry Pi's GPIO pins to a breadboard
+<ul>
+<li>GPIO breakout board for connecting the Raspberry Pi's GPIO pins to a breadboard</li>
+</ul>
