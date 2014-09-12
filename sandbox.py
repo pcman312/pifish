@@ -4,6 +4,7 @@ print "Begin imports"
 import pifish
 import logging as log
 import RPi.GPIO as gpio
+import time
 
 print "Loading logging configuration"
 #log.basicConfig(filename="pifish.log", level=log.INFO)
@@ -14,9 +15,14 @@ pifish.init()
 
 log.info("Loading config...")
 actions = pifish.loadConfigFile("config/grim_grinning_ghosts.conf")
+#actions = pifish.loadConfigFile("config/vincent_price_evil_laugh.conf")
 
 print "Ready"
 raw_input()
+#wait_time = 5
+#for i in range(0,wait_time):
+#	print wait_time - i
+#	time.sleep(1)
 pifish.runCommand(actions)
 
 #body = pifish.Motor(18, "Body")

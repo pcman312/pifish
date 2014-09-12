@@ -155,11 +155,12 @@ def runCommand(rawActions):
 
 	startTime = time.time()
 	timeOffset = 0.0
+	log.info(actions)
 	while len(actions) > 0:
 		action = actions[0]
 		curTime = timeSince(startTime)
 		if curTime >= (action.getTime() + timeOffset):
-			log.info("[%f] running cmd [%s]" 
+			log.debug("[%f] running cmd [%s]" 
 					% (curTime, action.getDescription()))
 			actions.pop(0)
 			if type(action) is SoundAction:
@@ -182,10 +183,12 @@ def loadConfigFile(filename):
 		raise IllegalArgumentException("filename is not a string")
 	f = open(filename)
 	motors = dict()
+	ignoreMotors = []
 	actions = []
 	offset = 0.0
 	for line in f:
 		line = line.strip()
+		log.debug("Reading line: %s" % line)
 		if line.startswith("#") or not line:
 			continue
 
@@ -195,6 +198,8 @@ def loadConfigFile(filename):
 			rawPosition = motorAction.group(2).lower()
 			time = float(motorAction.group(3)) + offset
 
+			if motorName in ignoreMotors:
+				continue
 			motor = motors[motorName]
 			if motor is None:
 				raise IOError("Unrecognized motor [%s]" % motorName)
@@ -226,6 +231,13 @@ def loadConfigFile(filename):
 		if offsetMatch:
 			time = float(offsetMatch.group(1))
 			offset += time
+			continue
+
+		ignoreMatch = re.search('^ignore\((\S+)\)$', line)
+		if ignoreMatch:
+			motorVar = ignoreMatch.group(1)
+			log.info("appending %s to %s" % (motorVar, str(ignoreMotors)))
+			ignoreMotors.append(motorVar)
 			continue
 
 	f.close()
