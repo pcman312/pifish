@@ -160,20 +160,6 @@ sleepTimeAdjustThread.daemon = True
 sleepTimeAdjustThread.start()
 
 while True:
+	# Use user input to simulate motion detection
 	raw_input("Waiting for user signal")
 	__motion()
-
-#configChoices = {}
-#for i in range(0, 5000):
-#	config = __getConfig()
-#	try:
-#		configChoices[config] = configChoices[config] + 1
-#	except KeyError:
-#		configChoices[config] = 1
-#
-#sortedConfigs = sorted(configs, key=__byPriority)
-#
-#for config in sortedConfigs:
-#	print "%s -> %d" % (config.getConfigFile(), configChoices[config])
-#
-#print "Goodbye"
